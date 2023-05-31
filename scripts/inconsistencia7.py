@@ -61,7 +61,6 @@ class Inconsistencia7():
             barra.setValue(prog_bar)
             prog_bar += 3
             
-            # *
             #Extraer por expresión: Se extraen los datos de todo el distrito concerniente al bloque elegido
             if len(txt_codigo) == 5:
                 expres_alg_params0 = f"bloque like trim('{txt_codigo}') || '%'"
@@ -76,8 +75,8 @@ class Inconsistencia7():
             prog_bar += 3
             
             #Extraer por expresión: Se extraen los polígonos marcados como vías en el mosaico catastral
-            expres_alg_params1 = "identificdor like '%V'"
-            alg_params1 = {'EXPRESSION': expres_alg_params1,
+            #expres_alg_params1 = "identificdor like '%V'"
+            alg_params1 = {'EXPRESSION': "identificador like '%V'",
                            'INPUT': mosai_catas,
                            'OUTPUT': QgsProcessing.TEMPORARY_OUTPUT}
             outputs1 = processing.run('native:extractbyexpression', alg_params1)
@@ -176,7 +175,7 @@ class Inconsistencia7():
             alg_params10 = {
                 'FIELDS_MAPPING': [{'expression': '"identificador"','length': 0,'name': 'Identificador','precision': 0,'sub_type': 0,'type': 10,'type_name': 'text'},
                                    {'expression': '"bloque"','length': 0,'name': 'Bloque','precision': 0,'sub_type': 0,'type': 10,'type_name': 'text'}],
-                'INPUT': outputs8,
+                'INPUT': outputs7,
                 'OUTPUT': QgsProcessing.TEMPORARY_OUTPUT}
             outputs10 = processing.run('native:refactorfields', alg_params10)
             outputs10 = outputs10['OUTPUT']
