@@ -27,6 +27,8 @@ class Inconsistencia6:
         Inconsistencia6.inc6.mc.setFilters(QgsMapLayerProxyModel.PolygonLayer)
         Inconsistencia6.inc6.ic.setFilters(QgsMapLayerProxyModel.NoGeometry)
         Inconsistencia6.inc6.traslapes.setFilters(QgsMapLayerProxyModel.NoGeometry)
+        Inconsistencia6.inc6.seg.setFilters(QgsMapLayerProxyModel.NoGeometry)
+        Inconsistencia6.inc6.fm.setFilters(QgsMapLayerProxyModel.NoGeometry)
 
         Inconsistencia6.inc6.bloque.textChanged.connect(Inconsistencia6.activarBoton)
             
@@ -45,6 +47,8 @@ class Inconsistencia6:
             mosai_catas = Inconsistencia6.inc6.mc.currentLayer()
             incon_conci = Inconsistencia6.inc6.ic.currentLayer()
             traslapes = Inconsistencia6.inc6.traslapes.currentLayer()
+            segregaciones = Inconsistencia6.inc6.seg.currentLayer()
+            filial_matriz = Inconsistencia6.inc6.fm.currentLayer()
             prog_bar = 5
 
             barra.setValue(prog_bar)
@@ -248,8 +252,8 @@ class Inconsistencia6:
             # Combina la tabla de No marcados en InconsistenciaConciliación (Output 9)
             # y la tabla de No marcardos en Traslapes (Output 12b)
             alg_params14 = {'CRS': QgsCoordinateReferenceSystem('EPSG:5367'),
-                                'LAYERS': [outputs12b,outputs9],
-                                'OUTPUT': QgsProcessing.TEMPORARY_OUTPUT}
+                            'LAYERS': [outputs12b,outputs9],
+                            'OUTPUT': QgsProcessing.TEMPORARY_OUTPUT}
             outputs14 = processing.run('native:mergevectorlayers', alg_params14)
             outputs14 = outputs14['OUTPUT']
 
@@ -262,6 +266,11 @@ class Inconsistencia6:
                             'OUTPUT': QgsProcessing.TEMPORARY_OUTPUT}
             outputs15 = processing.run('native:deletecolumn', alg_params15)
             outputs15 = outputs15['OUTPUT']
+            
+            outputs15.selectByExpression(f"array_contains(aggregate('{segregaciones.name()}','array_agg',a_b), Pareja)")
+            outputs15.startEditing()
+            outputs15.deleteSelectedFeatures()
+            outputs15.commitChanges()
 
             outputs13.setName('Traslapes Marcados')
             outputs15.setName('Traslapes No Marcados')
