@@ -267,12 +267,12 @@ class Inconsistencia6:
             outputs15 = processing.run('native:deletecolumn', alg_params15)
             outputs15 = outputs15['OUTPUT']
             
-            outputs15.selectByExpression(f"array_contains(aggregate('{segregaciones.name()}','array_agg',a_b), Pareja)")
+            outputs15.selectByExpression(f"array_contains(aggregate('{segregaciones.name()}','array_agg',a_b), Pareja) or array_contains(aggregate('{segregaciones.name()}','array_agg',b_a), Pareja)")
             outputs15.startEditing()
             outputs15.deleteSelectedFeatures()
             outputs15.commitChanges()
 
-            outputs15.selectByExpression(f"array_contains(aggregate('{filial_matriz.name()}','array_agg',a_b), Pareja)")
+            outputs15.selectByExpression(f"array_contains(aggregate('{filial_matriz.name()}','array_agg',a_b), Pareja) or array_contains(aggregate('{filial_matriz.name()}','array_agg',b_a), Pareja)")
             outputs15.startEditing()
             outputs15.deleteSelectedFeatures()
             outputs15.commitChanges()
