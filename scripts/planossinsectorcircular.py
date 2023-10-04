@@ -6,11 +6,9 @@ Complemento para labores internas en Telespazio Costa Rica.
 Archivo de la clase Planos sin sector circular y sus herramientas.
 
 Autor: Jason Alberto Navarro Ulate
-       Andrés David Chavarría-Palma
+Colabora: Andrés David Chavarría-Palma
        
-Creado el: Lunes 3 de abril del 2023
-Actualziado el: 
-Version: 0.1
+Abril - 2023
 
 '''
 

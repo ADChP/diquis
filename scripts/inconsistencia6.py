@@ -6,6 +6,8 @@ Complemento para labores internas en Telespazio Costa Rica.
 Archivo de la clase Inconsistencia 6 y sus herramientas.
 
 Autor: Andrés David Chavarría-Palma
+Colabora: Jason Alberto Navarro Ulate, Jorge Daniel García Girón
+
 Marzo - 2023
 
 '''

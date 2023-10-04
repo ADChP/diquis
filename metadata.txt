@@ -2,7 +2,7 @@
 name=Diquís
 description=Telespazio Costa Rica
 about=Complemento para labores internas en Telespazio Costa Rica.
-version=0.1
+version=0.1.5
 qgisMinimumVersion=3.0
 author=Andrés David Chavarría-Palma
 email=andres.chavarria@tpzcr.com

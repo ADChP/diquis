@@ -6,11 +6,9 @@ Complemento para labores internas en Telespazio Costa Rica.
 Archivo de compilado del archivo UI para la función de planos Sin Sector Circular.
 
 Autor: Jason Alberto Navarro Ulate
-       Andrés David Chavarría-Palma
+Colabora: Andrés David Chavarría-Palma
        
-Creado el: Martes 4 de abril del 2023
-Actualziado el: 
-Version: 0.1
+Abril - 2023
 
 '''
 

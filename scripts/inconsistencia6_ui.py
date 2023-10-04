@@ -6,6 +6,7 @@ Complemento para labores internas en Telespazio Costa Rica.
 Archivo de compilado del archivo UI para la función de incosistencia # 6.
 
 Autor: Andrés David Chavarría-Palma
+
 Marzo - 2023
 
 """

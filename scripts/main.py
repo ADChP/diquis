@@ -6,6 +6,7 @@ Complemento para labores internas en Telespazio Costa Rica.
 Archivo de arranque del complemento, interfaz gráfica y herramientas.
 
 Autor: Andrés David Chavarría-Palma
+
 Marzo - 2023
 
 '''
