@@ -208,10 +208,10 @@ class Inconsistencia6:
             prog_bar += 5
 
             #Rehacer campos de la tabla Traslapes.
-            alg_params11 = {'FIELDS_MAPPING': [{'expression': "Traslapes_IdPredial || '-' || Traslapes_ParejaId",'length': 0,'name': 'Pareja','precision': 0,'type': 10},
-                                                {'expression': '"Traslapes_ParejaBloque"','length': 0,'name': 'Bloque','precision': 0,'type': 10},
-                                                {'expression': '"Traslapes_IdPredial"','length': 0,'name': 'Identificador_A','precision': 0,'type': 10},
-                                                {'expression': '"Traslapes_ParejaId"','length': 0,'name': 'Identificador_B','precision': 0,'type': 10},
+            alg_params11 = {'FIELDS_MAPPING': [{'expression': "Traslapes_ParejaId || '-' || Traslapes_IdPredial",'length': 0,'name': 'Pareja','precision': 0,'type': 10},
+                                                {'expression': '"Traslapes_ParejaBloque"','length': 0,'name': 'Bloque_A','precision': 0,'type': 10},
+                                                {'expression': '"Traslapes_ParejaId"','length': 0,'name': 'Identificador_A','precision': 0,'type': 10},
+                                                {'expression': '"Traslapes_IdPredial"','length': 0,'name': 'Identificador_B','precision': 0,'type': 10},
                                                 {'expression': '"Traslapes_Codigo"','length': 0,'name': 'Codigo','precision': 0,'type': 10}],
                             'INPUT': outputs0,
                             'OUTPUT': QgsProcessing.TEMPORARY_OUTPUT}
@@ -239,7 +239,7 @@ class Inconsistencia6:
             prog_bar += 5
 
             # Quitar campos sobrantes en Traslapes Marcados
-            alg_params13 = {'COLUMN': ['Pareja_2','Bloque','Identificador_A_2','Identificador_B_2'],
+            alg_params13 = {'COLUMN': ['Pareja_2','Bloque_A_2','Identificador_A_2','Identificador_B_2'],
                             'INPUT': outputs12a,
                             'OUTPUT': QgsProcessing.TEMPORARY_OUTPUT}
             outputs13 = processing.run('native:deletecolumn', alg_params13)
@@ -268,6 +268,11 @@ class Inconsistencia6:
             outputs15 = outputs15['OUTPUT']
             
             outputs15.selectByExpression(f"array_contains(aggregate('{segregaciones.name()}','array_agg',a_b), Pareja)")
+            outputs15.startEditing()
+            outputs15.deleteSelectedFeatures()
+            outputs15.commitChanges()
+
+            outputs15.selectByExpression(f"array_contains(aggregate('{filial_matriz.name()}','array_agg',a_b), Pareja)")
             outputs15.startEditing()
             outputs15.deleteSelectedFeatures()
             outputs15.commitChanges()
